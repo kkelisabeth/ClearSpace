@@ -1,39 +1,62 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+import { auth } from "@/config/firebase";
+import { AuthProvider, useAuth } from "@/contexts/authContext";
+import { Stack, useRouter } from "expo-router";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+/**
+ * StackLayout Component
+ *
+ * Defines the navigation stack structure of the application,
+ * including modals for specific features like shopping list editing,
+ * category management, profile settings, and item search.
+ */
+function StackLayout() {
+  const router = useRouter();
+  const { setUser, updateUserData } = useAuth();
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+    // Monitor authentication state and update user context accordingly
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUser({
+          uid: user.uid,
+          email: user.email,
+          name: user.displayName || null,
+          image: null, // Add logic here if you have an image property
+        });
+        await updateUserData(user.uid);
+      } else {
+        setUser(null);
+      }
+    });
 
-  if (!loaded) {
-    return null;
-  }
+    return () => unsubscribe();
+  }, []);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="(modals)/categoryModal"
+        options={{ presentation: "modal" }}
+      />
+      <Stack.Screen
+        name="(modals)/profileModal"
+        options={{ presentation: "modal" }}
+      />
+    </Stack>
+  );
+}
+
+/**
+ * RootLayout Component
+ *
+ * Entry point for wrapping the entire app with the authentication context provider
+ * and rendering the core navigation stack.
+ */
+export default function RootLayout() {
+  return (
+    <AuthProvider>
+      <StackLayout />
+    </AuthProvider>
   );
 }

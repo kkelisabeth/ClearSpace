@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "final_1.0",
-    "slug": "final_1.0",
+    "name": "ClearSpace",
+    "slug": "fyp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,13 +9,18 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jelizavetapaula.clearspace",
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "bundler": "metro",
@@ -32,10 +37,23 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-notifications"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "08c2847b-c959-4a37-ad40-f187424cb642"
+      }
+    },
+    "owner": "jelizavetapaula",
+    "updates": {
+      "url": "https://u.expo.dev/08c2847b-c959-4a37-ad40-f187424cb642"
     }
   }
 }
