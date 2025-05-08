@@ -1,50 +1,92 @@
-# Welcome to your Expo app 👋
+Here’s a professional and comprehensive `README.md` tailored for your ClearSpace GitHub repository:
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+---
 
-## Get started
+# 🧹 ClearSpace – Home Inventory Management App
 
-1. Install dependencies
+ClearSpace is a mobile application designed to simplify household inventory management. Built with React Native and powered by Firebase, the app helps users track and organize essential household items like food, hygiene supplies, medicine, and cleaning products. It enables expiry tracking, low-stock alerts, and generates categorized shopping lists—making home management smarter and more efficient.
 
-   ```bash
-   npm install
-   ```
+## 📱 Features
 
-2. Start the app
+* 🔐 **User Authentication** (via Firebase Auth)
+* 🗃️ **Item Management** by category (Food, Hygiene, Medicine, Cleaning)
+* 🧼 **Low Stock & Expiry Tracking**
+* 🛒 **Smart Shopping List Generation**
+* 📦 **Cloud Sync with Firebase Firestore**
+* 📸 Future support for **Barcode Scanning** (UI implemented)
+* 👨‍👩‍👧 Future support for **Multi-user Collaboration**
 
-   ```bash
-    npx expo start
-   ```
+## 📦 Tech Stack
 
-In the output, you'll find options to open the app in a
+* **Frontend**: React Native (Expo)
+* **Backend**: Firebase (Auth + Firestore)
+* **Navigation**: Expo Router
+* **State Management**: Context API
+* **Storage**: AsyncStorage, Cloudinary for images, Firebase Database
+* **Deployment**: EAS (Expo Application Services)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🚀 Getting Started
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### 🔧 Prerequisites
 
-## Get a fresh project
+* Node.js & npm
+* Expo CLI:
 
-When you're ready, run:
+  ```bash
+  npm install -g expo-cli
+  ```
+
+### 📥 Clone and Install
 
 ```bash
-npm run reset-project
+git clone https://github.com/kkelisabeth/ClearSpace.git
+cd ClearSpace
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### ▶️ Run the App
 
-## Learn more
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+This will open Expo DevTools in your browser. Scan the QR code using the Expo Go app on your phone to launch the app.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 📱 Test Using Expo Go
 
-## Join the community
+* **Android**: Download [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent) from Google Play
+* **iOS**: Download [Expo Go](https://apps.apple.com/app/expo-go/id982107779) from the App Store
+* Scan the QR code displayed in Expo DevTools or your terminal
 
-Join our community of developers creating universal apps.
+> 💡 Make sure your computer and device are on the same Wi-Fi network.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🧪 Testing & APK Builds
+
+* For local development, use `npx expo start`.
+* To generate an APK for testing:
+
+  ```
+  npx eas build --platform android --profile preview
+  ```
+
+> Note: Make sure your `eas.json` and Firebase configuration are correctly set up for production.
+
+## 📂 Project Structure
+
+```
+ClearSpace/
+├── app/                  # Navigation and page structure (via Expo Router)
+├── components/           # Reusable UI components
+├── config/               # Firebase and environment configuration
+├── contexts/             # Global context (e.g., authentication)
+├── assets/               # App assets and images
+├── types/                # TypeScript types and interfaces
+├── utils/                # Helper functions
+├── app.(ts|js)           # Entry point
+└── ...
+```
+
+
+## 🙋‍♀️ About the Author
+
+ClearSpace was created as a Final Year Project by [K. Jelizaveta Paula](https://github.com/kkelisabeth), showcasing a full development lifecycle from concept to implementation, focusing on clean design, intuitive UX, and practical utility.
