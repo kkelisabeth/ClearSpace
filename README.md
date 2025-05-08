@@ -1,6 +1,3 @@
-Here’s a professional and comprehensive `README.md` tailored for your ClearSpace GitHub repository:
-
----
 
 # 🧹 ClearSpace – Home Inventory Management App
 
